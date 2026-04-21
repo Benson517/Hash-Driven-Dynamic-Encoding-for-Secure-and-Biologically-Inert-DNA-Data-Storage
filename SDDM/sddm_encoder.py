@@ -259,50 +259,7 @@ def dna_encoding(binary_sequence, key):
 
     return ''.join(dna_sequence)
 
-
-
-
 def bytes_to_binary_str(byte_data):
     """将字节流转换为二进制字符串（确保每个字节8位，高位补0）"""
     return ''.join(f'{byte:08b}' for byte in byte_data)
 
-
-if __name__ == "__main__":
-    import time
-
-    # 假设你有一个名为 DNA_validator.py 的文件用于验证
-    # 如果没有，请注释掉验证部分
-    try:
-        from DNA_validator import validate_dna_sequence, print_validation_report
-
-        has_validator = True
-    except ImportError:
-        has_validator = False
-        print("Warning: DNA_validator module not found. Skipping validation.")
-
-    dna_save_path = "image_dna_sequence.txt"
-
-
-    image_path = "1.png"
-    key = "b5b6e940db20c00b0000000000000000"
-
-    with open(image_path, "rb") as f:
-        image_data = f.read()
-
-    binary_str = bytes_to_binary_str(image_data)
-
-    print(f"数据大小：{len(image_data)} 字节 → 预计DNA长度：{len(image_data) * 4} bp")
-
-    begin = time.time()
-    dna = dna_encoding(binary_str, key)
-    end = time.time()
-
-    print(f"编码耗时：{(end - begin):.4f}s")
-
-    if has_validator:
-        result = validate_dna_sequence(dna)
-        print_validation_report(result)
-
-    with open(dna_save_path, "w", encoding="utf-8") as f:
-        f.write(dna)
-    print(f"\nDNA碱基序列已保存至：{dna_save_path}")
