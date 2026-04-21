@@ -168,7 +168,7 @@ def generate_initial_map(key):
 # ==========================================
 # 3. 解码器 (增加跳过阻断符逻辑)
 # ==========================================
-def dna_decoding(dna_sequence, key, decode_map_path="decoding_mapping_tables.json"):
+def dna_decoding(dna_sequence, key):
     # 假设 generate_initial_map(key) 和 update_map(...) 可用
 
     current_map = generate_initial_map(key)
@@ -269,8 +269,6 @@ def dna_decoding(dna_sequence, key, decode_map_path="decoding_mapping_tables.jso
     if decode_map_history:
         decode_map_history[-1]["end_base"] = total_bases - 1
 
-    with open(decode_map_path, "w", encoding="utf-8") as f:
-        json.dump(decode_map_history, f, indent=2)
 
     return ''.join(binary_sequence)
 
@@ -288,3 +286,4 @@ def binary_str_to_bytes(binary_str):
         byte = binary_str[i:i + 8]
         bytes_data.append(int(byte, 2))
     return bytes(bytes_data)
+
