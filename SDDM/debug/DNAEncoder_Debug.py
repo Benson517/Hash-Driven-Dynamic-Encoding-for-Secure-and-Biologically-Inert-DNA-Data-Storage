@@ -165,15 +165,12 @@ def update_map(key, processed_bits_count, last_three_bases, current_gc_ratio):
 def generate_initial_map(key):
     # 简单的初始映射生成，也可以复用 update_map
     return update_map(key, 0, ['A', 'C', 'G'], 50)
-    
-def bytes_to_binary_str(byte_data):
-    """将字节流转换为二进制字符串（确保每个字节8位，高位补0）"""
-    return ''.join(f'{byte:08b}' for byte in byte_data)
+
 
 # ==========================================
 # 2. 编码器 (增加同聚物阻断逻辑)
 # ==========================================
-def dna_encoding(binary_sequence, key, map_save_path="mapping_tables.json"):
+def dna_encoding(binary_sequence, key):
     current_map = generate_initial_map(key)
     map_history = []
     map_history.append({"start_base": 0, "end_base": None, "map": current_map})
@@ -271,14 +268,15 @@ def dna_encoding(binary_sequence, key, map_save_path="mapping_tables.json"):
     if map_history:
         map_history[-1]["end_base"] = total_bases - 1
 
-    with open(map_save_path, "w", encoding="utf-8") as f:
-        json.dump(map_history, f, indent=2)
+
 
     return ''.join(dna_sequence)
 
 
 
 
-
+def bytes_to_binary_str(byte_data):
+    """将字节流转换为二进制字符串（确保每个字节8位，高位补0）"""
+    return ''.join(f'{byte:08b}' for byte in byte_data)
 
 
