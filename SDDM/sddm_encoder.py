@@ -137,19 +137,3 @@ def dna_encoding(binary_sequence, key):
 def bytes_to_binary_str(byte_data):
     return ''.join(f'{byte:08b}' for byte in byte_data)
 
-
-if __name__ == "__main__":
-    image_path = "1.png"
-    key = "b5b6e940db20c00b0000000000000000"
-
-    try:
-        with open(image_path, "rb") as f:
-            image_data = f.read()
-        binary_str = bytes_to_binary_str(image_data)
-
-        dna = dna_encoding(binary_str, key)
-        with open("image_dna_sequence.txt", "w", encoding="utf-8") as f:
-            f.write(dna)
-        print(f"编码完成，DNA序列已保存至 image_dna_sequence.txt")
-    except FileNotFoundError:
-        print(f"错误：找不到文件 {image_path}")
