@@ -107,20 +107,3 @@ def stress_test(rounds: int = 10000, min_size: int = 50, max_size: int = 5000):
 
     return True, stats
 
-
-# ==============================
-# 一键运行终极测试
-# ==============================
-if __name__ == "__main__":
-    # 先跑 100 轮快速验证（10秒内）
-    print("阶段1：快速验证（100轮）")
-    success, _ = stress_test(rounds=100, min_size=100, max_size=2000)
-
-    if success:
-        print("\n快速验证通过！即将进入终极10000轮压力测试……")
-        import time
-
-        time.sleep(2)
-        stress_test(rounds=10000, min_size=50, max_size=5000)
-    else:
-        print("快速验证失败，请检查编码器逻辑")
