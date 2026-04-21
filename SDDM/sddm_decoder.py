@@ -282,32 +282,3 @@ def binary_str_to_bytes(binary_str):
         byte = binary_str[i:i + 8]
         bytes_data.append(int(byte, 2))
     return bytes(bytes_data)
-
-
-if __name__ == "__main__":
-
-    dna_save_path = "image_dna_sequence.txt"
-    output_image_path = "recovered_1.png"
-
-    key = "b5b6e940db20c00b0000000000000000"
-
-    try:
-        # 读取DNA序列
-        with open(dna_save_path, "r", encoding="utf-8") as f:
-            dna_sequence = f.read().strip()
-
-        print(f"读取到DNA序列长度：{len(dna_sequence)}bp")
-
-        # 解码
-        binary_str = dna_decoding(dna_sequence, key)
-        recovered_data = binary_str_to_bytes(binary_str)
-
-        # 保存
-        with open(output_image_path, "wb") as f:
-            f.write(recovered_data)
-        print(f"恢复的文件已保存至：{output_image_path}")
-
-    except FileNotFoundError:
-        print(f"错误：找不到输入文件 {dna_save_path}，请先运行编码器。")
-    except Exception as e:
-        print(f"发生错误：{e}")
