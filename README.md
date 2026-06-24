@@ -1,5 +1,10 @@
 # Hash-Driven-Dynamic-Encoding-for-Secure-and-Biologically-Inert-DNA-Data-Storage
 
+Author: Bowen Yang \ Haijian Shao \ Xing Deng \ Yingtao Jiang
+[Google Scholar](https://scholar.google.com/citations?user=d3mvChQAAAAJ&hl=en)
+
+---
+
 Repository Scope & Theoretical Boundary
 This repository exclusively implements the Source Coding Module (State-Dependent Dynamic Mapping, SDDM) proposed in the manuscript. The Channel Coding Module (the concatenated RS+LDPC Forward Error Correction architecture abstracted in Section II-A) is not included in this release.
 
